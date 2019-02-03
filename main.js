@@ -16,7 +16,7 @@ const getRandomColor = () => {
 };
 
 const start = () => {
-    cancelScore();
+    cancelScoreAndSquares();
     requestAnimationFrame(animate);
 };
 
@@ -83,9 +83,10 @@ const countScore = () => {
     updateScore(score);
 };
 
-const cancelScore = () => {
+const cancelScoreAndSquares = () => {
     score = 0;
     updateScore(score);
+    squares = [];
 };
 
 const updateScore = (score) => {
