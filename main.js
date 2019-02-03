@@ -1,6 +1,10 @@
 let score = 0;
 const sizeSquare = 20;
 let id;
+const start = document.getElementById('start');
+const stop = document.getElementById('stop');
+const score_audio = new Audio();
+score_audio.src = "audio/score.mp3";
 
 const generateNumber = (min, max) => {
     return Math.floor(Math.random() * (max - min + 1) + min);
@@ -15,18 +19,17 @@ const getRandomColor = () => {
     return color;
 };
 
-const start = () => {
+start.addEventListener('click', () => {
     cancelScoreAndSquares();
     requestAnimationFrame(animate);
-};
-
-const stop = () => {
+});
+stop.addEventListener('click', () => {
     cancelAnimationFrame( id );
     squares = [];
     const canvas = document.getElementById('canvas');
     const ctx = canvas.getContext('2d');
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-};
+});
 
 const clickInSquare = (e) => {
     const clickPos = {
@@ -79,6 +82,7 @@ const animate = () => {
 };
 
 const countScore = () => {
+    score_audio.play();
     score++;
     updateScore(score);
 };
